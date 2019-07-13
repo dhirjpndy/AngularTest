@@ -20,3 +20,12 @@ steps:
     npm install
     ng build --prod
   displayName: 'npm install and build'
+
+- task: UniversalPackages@0
+  displayName: Universal Publish
+  inputs:
+    command: publish
+    publishDirectory: '$(Build.ArtifactStagingDirectory)'
+    vstsFeedPublish: '<Feed name>'
+    vstsFeedPackagePublish: '<Package name>'
+    packagePublishDescription: '<Package description>'
