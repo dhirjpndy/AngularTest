@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'vs2017-win2016'
 
 steps:
 - task: NodeTool@0
@@ -21,11 +21,7 @@ steps:
     ng build --prod
   displayName: 'npm install and build'
 
-- task: UniversalPackages@0
-  displayName: Universal Publish
+- task: ArchiveFiles@2
   inputs:
-    command: publish
-    publishDirectory: '$(Build.ArtifactStagingDirectory)'
-    vstsFeedPublish: '<Feed name>'
-    vstsFeedPackagePublish: '<Package name>'
-    packagePublishDescription: '<Package description>'
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
