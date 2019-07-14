@@ -23,5 +23,14 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
     includeRootFolder: false
+
+- task: UniversalPackages@0
+  displayName: Universal Publish
+  inputs:
+    command: publish
+    publishDirectory: '$(Build.ArtifactStagingDirectory)'
+    vstsFeedPublish: '<Feed name>'
+    vstsFeedPackagePublish: '<Package name>'
+    packagePublishDescription: '<Package description>'
